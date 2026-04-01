@@ -42,6 +42,7 @@
     background: rgba(254,254,254,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
+    transition: all 0.3s ease;
   }
   .nav-logo {
     font-family: 'Playfair Display', serif;
@@ -75,6 +76,26 @@
     position: absolute; border-radius: 50%;
     filter: blur(60px); opacity: 0.55; pointer-events: none;
   }
+  
+  /* HERO TWO-COLUMN LAYOUT */
+  .hero-wrapper {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: 60px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2; 
+  }
+  
+  .hero-visual {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
   .blob-1 { width: 420px; height: 420px; background: #b8a4e0; top: -80px; right: -100px; opacity: 0.7; }
   .blob-2 { width: 300px; height: 300px; background: #e8b894; bottom: 60px; right: 15vw; opacity: 0.7; }
   .blob-3 { width: 240px; height: 240px; background: #90cce8; bottom: -40px; left: 5vw; opacity: 0.7; }
@@ -89,14 +110,14 @@
   }
   .hero-name {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3.2rem, 8vw, 6rem);
+    font-size: clamp(2.8rem, 8vw, 6rem);
     font-weight: 800; line-height: 1.05;
     letter-spacing: -0.02em;
     margin-bottom: 24px;
   }
   .hero-name em { font-style: italic; color: #8a68c8; }
   .hero-sub {
-    font-size: 1.2rem; color: var(--text-muted);
+    font-size: clamp(1rem, 3vw, 1.2rem); color: var(--text-muted);
     font-weight: 300; max-width: 520px;
     margin-bottom: 44px;
   }
@@ -129,56 +150,118 @@
   }
   @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
 
-  /* ABOUT */
-  #about { background: var(--off-white); }
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1.4fr;
-    gap: 80px; align-items: center; max-width: 1100px;
-  }
-  .about-visual {
+  /* HERO IMAGE & BADGE STYLING */
+  .hero-image-container {
     position: relative;
-    width: 100%; aspect-ratio: 1;
+    width: 100%;
     max-width: 380px;
+    aspect-ratio: 1; 
   }
-  .about-card {
-    width: 100%; height: 100%;
-    background: linear-gradient(135deg, #b8a4e0 0%, #90cce8 100%);
-    border-radius: 24px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 5rem; font-weight: 700;
-    color: rgba(255,255,255,0.9);
-    letter-spacing: -0.02em;
-  }
-  .about-badge {
-    position: absolute; bottom: -16px; right: -16px;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 16px; padding: 14px 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    font-size: 0.85rem;
-  }
-  .about-badge strong { display: block; font-size: 1.4rem; font-family: 'Playfair Display', serif; }
 
+  .hero-profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px; 
+    box-shadow: 0 24px 56px rgba(0,0,0,0.12); 
+  }
+
+  .hero-floating-badge {
+    position: absolute;
+    bottom: 20px;
+    left: -30px;
+    background: #ffffff;
+    border: 1.5px solid #ddd8d0;
+    border-radius: 30px;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    white-space: nowrap;
+    z-index: 10;
+  }
+
+  .pulse-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    position: relative;
+  }
+  
+  .pulse-dot::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    animation: pulse 2s infinite ease-out;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(2.5); opacity: 0; }
+  }
+
+  /* ABOUT */
+  #about { 
+    background: var(--off-white); 
+  }
+  
+  .about-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
   .about-heading {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700; line-height: 1.15;
-    margin-bottom: 20px;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700; 
+    line-height: 1.15;
+    margin-bottom: 30px;
+    color: #f0eeea; 
   }
-  .about-text { color: var(--text-muted); margin-bottom: 16px; font-size: 1.05rem; }
-  .about-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  
+  .about-text { 
+    color: #b8b4ae; 
+    font-size: 1.15rem; 
+    line-height: 1.8;
+    max-width: 100%; 
+  }
+  
+  .about-tags { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 12px; 
+    justify-content: flex-start;
+  }
+  
   .tag {
-    padding: 7px 18px; border-radius: 20px;
-    font-size: 0.85rem; font-weight: 500;
+    padding: 8px 20px; 
+    border-radius: 20px;
+    font-size: 0.88rem; 
+    font-weight: 500;
     border: 1.5px solid var(--border);
   }
+  
   .tag-blue { background: #cce4f8; border-color: #8ab8e0; color: #1a4a72; }
   .tag-lavender { background: #e0d4f8; border-color: #b8a4e0; color: #3a1a70; }
   .tag-peach { background: #fcd8b8; border-color: #e8b894; color: #7a3a10; }
+  .tag-sky { background: #d0f0f8; border-color: #90cce8; color: #1a5a72; }
 
   /* SKILLS */
-  #skills { }
   .skills-header { max-width: 500px; margin-bottom: 60px; }
   .skills-header h2 {
     font-family: 'Playfair Display', serif;
@@ -186,7 +269,8 @@
     font-weight: 700; line-height: 1.15;
   }
   .skills-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
     gap: 24px;
   }
   .skill-card {
@@ -233,7 +317,8 @@
     font-weight: 700;
   }
   .projects-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 28px;
   }
   .project-card {
@@ -257,9 +342,6 @@
     font-size: 2.5rem;
     transition: filter 0.3s;
   }
-  .banner-blue { background: linear-gradient(135deg, #a8d4f0 0%, #90b8e8 100%); }
-  .banner-lavender { background: linear-gradient(135deg, #d0bef8 0%, #b8a4e0 100%); }
-  .banner-peach { background: linear-gradient(135deg, #f8d8bc 0%, #e8b894 100%); }
   .project-body { padding: 28px; }
   .project-body h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
   .project-body p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px; }
@@ -273,7 +355,7 @@
   }
   .project-link {
     font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em;
-    color: var(--text);
+    color: white;
     display: flex; align-items: center; gap: 5px;
     white-space: nowrap;
     transition: gap 0.2s;
@@ -281,7 +363,6 @@
   .project-card:hover .project-link { gap: 9px; }
 
   /* ACHIEVEMENTS */
-  #achievements { }
   .ach-header { margin-bottom: 60px; }
   .ach-header h2 {
     font-family: 'Playfair Display', serif;
@@ -289,9 +370,12 @@
     font-weight: 700;
   }
   .ach-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: grid; 
+    grid-template-columns: 1fr 1fr;
     gap: 24px;
   }
+  .ach-wide { grid-column: 1 / -1; }
+  
   .ach-card {
     border-radius: 24px; padding: 36px;
     border: 1.5px solid transparent;
@@ -331,7 +415,19 @@
   #contact {
     background: var(--off-white);
   }
-  .contact-inner { max-width: 640px; }
+  .contact-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; 
+    max-width: 1100px;
+    margin: 0 auto; 
+    gap: 80px; 
+  }
+  
+  .contact-inner {
+    flex: 1;
+    max-width: 520px;
+  }
   .contact-inner h2 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 4vw, 3rem);
@@ -353,40 +449,74 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 1.4rem; flex-shrink: 0;
   }
+  
   .c-email { background: #cce0f8; }
   .c-github { background: #dcd0f8; }
+  .c-linkedin { background: #cce0f8; }
+  .c-leetcode { background: #fcd8b8; }
+  
   .contact-info strong { display: block; font-size: 1.05rem; font-weight: 600; }
-  .contact-info span { font-size: 0.88rem; color: var(--text-muted); }
-  .contact-arrow { margin-left: auto; font-size: 1.2rem; color: var(--text-muted); }
+  .contact-info span { font-size: 0.88rem; color: var(--text-muted); word-break: break-all; }
+  .contact-arrow { margin-left: auto; font-size: 1.2rem; color: var(--text-muted); transition: transform 0.2s; }
+
+  .contact-form-container {
+    flex: 1;
+    width: 100%;
+    max-width: 480px;
+    background: #252840;
+    border: 1.5px solid #353858;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 20px 48px rgba(0,0,0,0.15);
+  }
+
+  .form-group { margin-bottom: 24px; }
+  .form-group label {
+    display: block;
+    font-size: 0.85rem; font-weight: 600; color: #a0a8c0;
+    margin-bottom: 10px; letter-spacing: 0.05em; text-transform: uppercase;
+  }
+
+  .custom-form input, .custom-form textarea {
+    width: 100%;
+    background: #1c1f2e; 
+    border: 1.5px solid #353858;
+    border-radius: 14px; padding: 16px;
+    color: #f0eeea; font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; transition: all 0.3s ease;
+  }
+  .custom-form input::placeholder, .custom-form textarea::placeholder { color: #606885; }
+  .custom-form input:focus, .custom-form textarea:focus {
+    outline: none; border-color: #b8a4e0; 
+    box-shadow: 0 0 0 4px rgba(184, 164, 224, 0.15);
+  }
+  .custom-form textarea { resize: vertical; min-height: 120px; }
+
+  .submit-btn {
+    width: 100%; padding: 18px;
+    background: #f0eeea; color: #1c1f2e;
+    border: none; border-radius: 14px;
+    font-size: 1rem; font-weight: 700; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: transform 0.2s ease, background 0.2s ease;
+    margin-top: 10px;
+  }
+  .submit-btn:hover { background: #ffffff; transform: translateY(-2px); }
 
   /* DARK SECTION OVERRIDES */
-  #about, #projects, #contact {
-    color: #f0eeea;
-  }
-  #about .section-label, #projects .section-label, #contact .section-label {
-    color: #a8a49e;
-  }
+  #about, #projects, #contact { color: #f0eeea; }
+  #about .section-label, #projects .section-label, #contact .section-label { color: #a8a49e; }
   #about .about-text { color: #b8b4ae; }
-  #about .about-badge {
-    background: #2a2e40;
-    border-color: #3a3e52;
-    color: #f0eeea;
-  }
-  #projects .project-card {
-    background: #252840;
-    border-color: #353858;
-  }
+  #projects .project-card { background: #252840; border-color: #353858; }
   #projects .project-body p { color: #a0a8c0; }
   #projects .project-pill { background: #2a2e46; border-color: #404468; color: #a0a8c0; }
-  #contact .contact-card {
-    background: #252840;
-    border-color: #353858;
-    color: #f0eeea;
-  }
+  #contact .contact-card { background: #252840; border-color: #353858; color: #f0eeea; }
   #contact p { color: #a0a8c0; }
   #contact .contact-info span { color: #8088a8; }
   #contact .contact-arrow { color: #8088a8; }
   #contact .contact-card:hover { border-color: #6060a0; }
+  
+  /* FOOTER */
   footer {
     padding: 36px 6vw;
     border-top: 1px solid var(--border);
@@ -398,25 +528,107 @@
   /* FADE-IN ANIMATION */
   .fade-up {
     opacity: 0; transform: translateY(28px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
+    transition: opacity 0.35s ease-out, transform 0.35s ease-out; 
   }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-  /* RESPONSIVE */
+
+  /* =========================================
+     COMPREHENSIVE RESPONSIVE MEDIA QUERIES
+     ========================================= */
+
+  /* Table / Smaller Desktops */
+  @media (max-width: 1024px) {
+    section { padding: 80px 6vw; }
+    .contact-wrapper { gap: 40px; }
+  }
+
+  /* Tablets & Large Mobile */
+  @media (max-width: 900px) {
+    .hero-wrapper {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 50px;
+      margin-top: 40px;
+    }
+    .hero-inner {
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    /* Hide the image/badge entirely on screens where it stacks */
+    .hero-visual { display: none; }
+    
+    .hero-ctas { justify-content: center; }
+    
+    /* Fixed Contact Grid -> Flex Column */
+    .contact-wrapper { 
+      flex-direction: column; 
+      align-items: center;
+      gap: 50px; 
+    }
+    .contact-inner, .contact-form-container {
+      max-width: 100%;
+    }
+    .contact-form-container {
+      padding: 30px 24px;
+    }
+  }
+
+  /* Mobile Devices */
   @media (max-width: 768px) {
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .about-visual { max-width: 260px; }
-    nav { padding: 18px 5vw; }
-    .nav-links { gap: 20px; }
+    section { padding: 60px 5vw; }
+    #hero { padding-top: 160px; min-height: auto; padding-bottom: 60px; }
+    
+    /* Responsive Nav Stacking */
+    nav { 
+      flex-direction: column; 
+      padding: 15px 5vw; 
+      gap: 12px;
+    }
+    .nav-links { 
+      gap: 15px; 
+      flex-wrap: wrap; 
+      justify-content: center;
+    }
+    .nav-links a { font-size: 0.85rem; }
+
+    /* Single Column Achievements */
+    .ach-grid { grid-template-columns: 1fr; }
+    .ach-wide { grid-column: auto; }
+
     footer { flex-direction: column; gap: 10px; text-align: center; }
+  }
+
+  /* Extra Small Devices (Phones under 480px) */
+  @media (max-width: 480px) {
+    .hero-ctas { flex-direction: column; width: 100%; }
+    .btn-primary, .btn-outline { width: 100%; text-align: center; }
+    
+    .skills-grid { grid-template-columns: 1fr; } 
+    .projects-grid { grid-template-columns: 1fr; }
+    
+    /* Adjust contact card layout for very narrow screens */
+    .contact-card { 
+      flex-direction: column; 
+      text-align: center; 
+      gap: 12px; 
+      padding: 20px; 
+    }
+    .contact-arrow { 
+      margin: 0 auto; 
+      transform: rotate(90deg); 
+    }
+    .contact-card:hover { transform: translateY(-4px); }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo">Portfolio</div>
+  <div class="nav-logo">Priyesh Thakur</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -426,51 +638,59 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-blob blob-1"></div>
   <div class="hero-blob blob-2"></div>
   <div class="hero-blob blob-3"></div>
-  <div class="hero-inner">
-    <span class="hero-tag">Open to Opportunities</span>
-    <h1 class="hero-name">Software<br><em>Developer</em></h1>
-    <p class="hero-sub">Building thoughtful digital experiences — from algorithms to interfaces, with clean code and creative thinking.</p>
-    <div class="hero-ctas">
-      <a href="#projects" class="btn-primary">View My Work</a>
-      <a href="#contact" class="btn-outline">Get in Touch</a>
+  
+  <div class="hero-wrapper">
+    <div class="hero-inner fade-up">
+      <span class="hero-tag">Open to Opportunities</span>
+      <h1 class="hero-name">Software<br><em>Developer</em></h1>
+      <p class="hero-sub">Building thoughtful digital experiences — from algorithms to interfaces, with clean code and creative thinking.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    
+    <div class="hero-visual fade-up">
+      <div class="hero-image-container">
+        <img src="profile_priyesh.jpg" alt="Profile" class="hero-profile-img">
+        
+        <div class="hero-floating-badge">
+          <span class="pulse-dot"></span>
+          Full-Stack Developer
+        </div>
+      </div>
     </div>
   </div>
+
   <div class="hero-scroll">
     <div class="scroll-line"></div>
     <span>Scroll to explore</span>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
-  <div class="about-grid">
-    <div class="about-visual fade-up">
-      <div class="about-card">dev</div>
-      <div class="about-badge">
-        <strong>360+</strong>
-        LeetCode Problems
-      </div>
+  <div class="about-wrapper fade-up">
+    <p class="section-label">About Me</p>
+    <h2 class="about-heading">Curious engineer, meticulous builder.</h2>
+    
+    <div class="about-content">
+      <p class="about-text">I am a passionate software developer who thrives at the intersection of complex problem-solving and elegant system design. With a robust foundation in data structures and algorithms, I focus on writing code that isn't just functional, but highly optimized, scalable, and maintainable.</p>
+      <p class="about-text">My drive comes from a constant desire to learn and challenge myself. Whether I am climbing the ranks in competitive programming, architecting responsive full-stack applications, or contributing to major open-source projects used by thousands of developers, I am dedicated to crafting software that makes a genuine impact.</p>
     </div>
-    <div class="fade-up">
-      <p class="section-label">About Me</p>
-      <h2 class="about-heading">Curious engineer,<br>meticulous builder.</h2>
-      <p class="about-text">I'm a software developer with a strong foundation in data structures, algorithms, and full-stack development. I enjoy solving complex problems and contributing to the open-source community.</p>
-      <p class="about-text">When I'm not coding, I'm competing on LeetCode, exploring new technologies, or finding ways to make software more elegant and efficient.</p>
-      <div class="about-tags">
-        <span class="tag tag-blue">Problem Solving</span>
-        <span class="tag tag-lavender">Open Source</span>
-        <span class="tag tag-peach">Competitive Programming</span>
-      </div>
+    
+    <div class="about-tags">
+      <span class="tag tag-blue">Problem Solving</span>
+      <span class="tag tag-lavender">Open Source Contribution</span>
+      <span class="tag tag-peach">Competitive Programming</span>
+      <span class="tag tag-sky">Full-Stack Architecture</span>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <div class="skills-header fade-up">
     <p class="section-label">Technical Skills</p>
@@ -531,139 +751,261 @@
         <span class="pill">VS Code</span>
       </div>
     </div>
-    <div class="skill-card card-lavender fade-up">
-      <div class="skill-icon">📦</div>
-      <h3>Open Source</h3>
-      <div class="skill-pills">
-        <span class="pill">xlsxwriter</span>
-        <span class="pill">Pull Requests</span>
-        <span class="pill">Code Review</span>
-        <span class="pill">Documentation</span>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="projects-header fade-up">
     <p class="section-label">Selected Work</p>
     <h2>Projects</h2>
   </div>
   <div class="projects-grid">
-    <a href="#" class="project-card fade-up">
-      <div class="project-banner banner-blue">🗂️</div>
-      <div class="project-body">
-        <h3>Task Management App</h3>
-        <p>A full-stack productivity tool with real-time updates, drag-and-drop task boards, and team collaboration features.</p>
-        <div class="project-meta">
-          <div class="project-tags">
-            <span class="project-pill">React</span>
-            <span class="project-pill">Node.js</span>
-            <span class="project-pill">MongoDB</span>
-          </div>
-          <span class="project-link">View ↗</span>
-        </div>
+    
+    <a href="https://github.com/thakurpriyesh/dayflow" target="_blank" rel="noopener noreferrer" class="project-card fade-up">
+      <div class="project-banner" style="padding: 0; background: transparent;">
+        <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=600&q=80" alt="dayflow task manager" style="width: 100%; height: 100%; object-fit: cover;">
       </div>
-    </a>
-    <a href="#" class="project-card fade-up">
-      <div class="project-banner banner-lavender">🔍</div>
       <div class="project-body">
-        <h3>Algorithm Visualizer</h3>
-        <p>Interactive visualizations of classic sorting and graph algorithms with step-by-step animation controls.</p>
+        <h3>dayflow</h3>
+        <p>A daily task manager built to help organize workflows and track everyday activities seamlessly.</p>
         <div class="project-meta">
           <div class="project-tags">
             <span class="project-pill">JavaScript</span>
-            <span class="project-pill">Canvas API</span>
-            <span class="project-pill">DSA</span>
+            <span class="project-pill">CSS</span>
           </div>
-          <span class="project-link">View ↗</span>
+          <span class="project-link">View Repo ↗</span>
         </div>
       </div>
     </a>
-    <a href="#" class="project-card fade-up">
-      <div class="project-banner banner-peach">📊</div>
+
+    <a href="https://github.com/thakurpriyesh/stockPulse" target="_blank" rel="noopener noreferrer" class="project-card fade-up">
+      <div class="project-banner" style="padding: 0; background: transparent;">
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600&q=80" alt="stockPulse financial dashboard" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
       <div class="project-body">
-        <h3>Data Dashboard</h3>
-        <p>A clean analytics dashboard for visualizing complex datasets with responsive charts and filterable views.</p>
+        <h3>stockPulse</h3>
+        <p>A stock overview and prediction app for tracking market trends and analyzing financial data.</p>
         <div class="project-meta">
           <div class="project-tags">
             <span class="project-pill">Python</span>
-            <span class="project-pill">Next.js</span>
-            <span class="project-pill">REST API</span>
+            <span class="project-pill">Data Analytics</span>
           </div>
-          <span class="project-link">View ↗</span>
+          <span class="project-link">View Repo ↗</span>
         </div>
       </div>
     </a>
+
+    <a href="https://github.com/thakurpriyesh/ai-resume-builder" target="_blank" rel="noopener noreferrer" class="project-card fade-up">
+      <div class="project-banner" style="padding: 0; background: transparent;">
+        <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=600&q=80" alt="AI Resume Builder" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div class="project-body">
+        <h3>ai-resume-builder</h3>
+        <p>An intelligent platform leveraging machine learning models to help users format and optimize their resumes.</p>
+        <div class="project-meta">
+          <div class="project-tags">
+            <span class="project-pill">AI/ML</span>
+            <span class="project-pill">Next.js</span>
+          </div>
+          <span class="project-link">View Repo ↗</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://github.com/thakurpriyesh/miniGoogle" target="_blank" rel="noopener noreferrer" class="project-card fade-up">
+      <div class="project-banner" style="padding: 0; background: transparent;">
+        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80" alt="miniGoogle search engine" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div class="project-body">
+        <h3>miniGoogle</h3>
+        <p>A search engine implementation showcasing indexing, algorithms, and fundamental data retrieval.</p>
+        <div class="project-meta">
+          <div class="project-tags">
+            <span class="project-pill">Java</span>
+            <span class="project-pill">Algorithms</span>
+          </div>
+          <span class="project-link">View Repo ↗</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://github.com/thakurpriyesh/civicConnect" target="_blank" rel="noopener noreferrer" class="project-card fade-up">
+      <div class="project-banner" style="padding: 0; background: transparent;">
+        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=600&q=80" alt="civicConnect community app" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div class="project-body">
+        <h3>civicConnect</h3>
+        <p>A digital platform designed to bridge the gap between community members and civic resources.</p>
+        <div class="project-meta">
+          <div class="project-tags">
+            <span class="project-pill">JavaScript</span>
+            <span class="project-pill">Node.js</span>
+          </div>
+          <span class="project-link">View Repo ↗</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://github.com/thakurpriyesh/weatherApp" target="_blank" rel="noopener noreferrer" class="project-card fade-up">
+      <div class="project-banner" style="padding: 0; background: transparent;">
+        <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=600&q=80" alt="weather application dashboard" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div class="project-body">
+        <h3>weatherApp</h3>
+        <p>A real-time weather forecasting application providing accurate meteorological data and location-based updates.</p>
+        <div class="project-meta">
+          <div class="project-tags">
+            <span class="project-pill">CSS</span>
+            <span class="project-pill">REST APIs</span>
+          </div>
+          <span class="project-link">View Repo ↗</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://github.com/thakurpriyesh/portfolio_priyesh" target="_blank" rel="noopener noreferrer" class="project-card fade-up">
+      <div class="project-banner" style="padding: 0; background: transparent;">
+        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="personal developer portfolio" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div class="project-body">
+        <h3>portfolio_priyesh</h3>
+        <p>A highly responsive, custom-designed personal portfolio showcasing software development projects and achievements.</p>
+        <div class="project-meta">
+          <div class="project-tags">
+            <span class="project-pill">HTML/CSS</span>
+            <span class="project-pill">JavaScript</span>
+          </div>
+          <span class="project-link">View Repo ↗</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://github.com/thakurpriyesh/rockPaperScissors" target="_blank" rel="noopener noreferrer" class="project-card fade-up">
+      <div class="project-banner" style="padding: 0; background: transparent;">
+        <img src="https://images.unsplash.com/photo-1553481187-be93c21490a9?auto=format&fit=crop&w=600&q=80" alt="rock paper scissors game interface" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <div class="project-body">
+        <h3>rockPaperScissors</h3>
+        <p>An interactive, browser-based implementation of the classic game featuring dynamic DOM manipulation.</p>
+        <div class="project-meta">
+          <div class="project-tags">
+            <span class="project-pill">JavaScript</span>
+            <span class="project-pill">Frontend</span>
+          </div>
+          <span class="project-link">View Repo ↗</span>
+        </div>
+      </div>
+    </a>
+
   </div>
 </section>
 
-<!-- ACHIEVEMENTS -->
 <section id="achievements">
   <div class="ach-header fade-up">
     <p class="section-label">Milestones</p>
     <h2>Achievements</h2>
   </div>
   <div class="ach-grid">
-    <div class="ach-card ach-blue fade-up">
+    
+    <a href="https://leetcode.com/u/thakurpriyesh" target="_blank" class="ach-card ach-blue fade-up" style="text-decoration: none; color: inherit; display: block;">
       <div class="ach-accent"></div>
       <div class="ach-number">360+</div>
       <h3>LeetCode Problems Solved</h3>
       <p>Consistently solving problems across Easy, Medium, and Hard difficulty levels, covering core DSA topics.</p>
-    </div>
-    <div class="ach-card ach-lavender fade-up">
+    </a>
+
+    <a href="https://leetcode.com/u/thakurpriyesh" target="_blank" class="ach-card ach-lavender fade-up" style="text-decoration: none; color: inherit; display: block;">
       <div class="ach-accent"></div>
       <div class="ach-number">1785</div>
       <h3>LeetCode Contest Rating</h3>
       <p>Achieved a peak contest rating of 1785, reflecting strong performance in timed competitive programming rounds.</p>
-    </div>
-    <div class="ach-card ach-peach fade-up">
+    </a>
+
+    <a href="https://github.com/thakurpriyesh" target="_blank" class="ach-card ach-peach ach-wide fade-up" style="text-decoration: none; color: inherit; display: block;">
       <div class="ach-accent"></div>
       <div class="ach-number">OSS</div>
       <h3>Open Source Contributor</h3>
       <p>Contributed to <strong>xlsxwriter</strong>, a popular Python library for creating Excel files — with merged pull requests and documentation improvements.</p>
-    </div>
+    </a>
+
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
-  <div class="contact-inner">
-    <p class="section-label">Get In Touch</p>
-    <h2>Let's work<br>together.</h2>
-    <p>Whether you have a project in mind, a question, or just want to connect — my inbox is always open.</p>
-    <div class="contact-cards">
-      <a href="/cdn-cgi/l/email-protection#c6bfa9b3b486a3aba7afaae8a5a9ab" class="contact-card fade-up">
-        <div class="contact-icon c-email">✉️</div>
-        <div class="contact-info">
-          <strong>Email</strong>
-          <span><span class="__cf_email__" data-cfemail="4f36203a3d0f2a222e2623612c2022">[email&#160;protected]</span></span>
-        </div>
-        <span class="contact-arrow">→</span>
-      </a>
-      <a href="https://github.com/yourusername" target="_blank" class="contact-card fade-up">
-        <div class="contact-icon c-github">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="#5a4a80"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-        </div>
-        <div class="contact-info">
-          <strong>GitHub</strong>
-          <span>github.com/yourusername</span>
-        </div>
-        <span class="contact-arrow">→</span>
-      </a>
+  <div class="contact-wrapper">
+    
+    <div class="contact-inner">
+      <p class="section-label">Get In Touch</p>
+      <h2>Let's work together.</h2>
+      <p>Whether you have a project in mind, a question, or just want to connect — my inbox is always open.</p>
+      <div class="contact-cards">
+        <a href="https://leetcode.com/u/thakurpriyesh" target="_blank" class="contact-card fade-up">
+          <div class="contact-icon c-leetcode">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#a05a2c"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.939 5.939 0 0 0 1.271 1.543l3.995 3.929.025.024 7.5 7.339a2.1 2.1 0 0 0 2.815-.026.975.975 0 0 0 .252-.24l6.855-6.67a4.86 4.86 0 0 0 1.548-3.3c0-1.226-.534-2.477-1.49-3.385l-6.682-6.506a.983.983 0 0 0-1.35.013l-4.08 3.946a.521.521 0 0 0-.147.336.533.533 0 0 0 .12.352l-.002-.001a.338.338 0 0 0 .046.052l.024.024.013.012 4.14 3.98a.526.526 0 0 1 .155.344.538.538 0 0 1-.163.354l-.01.011-4.08 3.945a.51.51 0 0 1-.36.154.524.524 0 0 1-.365-.152l-6.543-6.38a1.9 1.9 0 0 1-.588-1.42 1.96 1.96 0 0 1 .632-1.47l3.8-4.066 5.4-5.783a.961.961 0 0 1 .67-.291.956.956 0 0 1 .658.283l.006.006 5.556 5.412a.52.52 0 0 0 .365.152.52.52 0 0 0 .355-.16l4.08-3.945a.991.991 0 0 0 .248-.25.96.96 0 0 0 .06-.822.956.956 0 0 0-.441-.532l-6.794-6.618A1.365 1.365 0 0 0 13.483 0zm-2.856 15.325a.52.52 0 0 0-.37.152l-4.08 3.946a.525.525 0 0 0-.153.344.538.538 0 0 0 .162.353l.01.011 4.08-3.946a.52.52 0 0 0 .153-.344.538.538 0 0 0-.162-.353l-.01-.01z"/></svg>
+          </div>
+          <div class="contact-info">
+            <strong>LeetCode</strong>
+            <span>leetcode.com/u/thakurpriyesh</span>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+
+        <a href="https://linkedin.com/in/thakurpriyesh" target="_blank" class="contact-card fade-up">
+          <div class="contact-icon c-linkedin">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#5a4a80"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </div>
+          <div class="contact-info">
+            <strong>LinkedIn</strong>
+            <span>linkedin.com/in/thakurpriyesh</span>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+        
+        <a href="https://github.com/thakurpriyesh" target="_blank" class="contact-card fade-up">
+          <div class="contact-icon c-github">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#5a4a80"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </div>
+          <div class="contact-info">
+            <strong>GitHub</strong>
+            <span>github.com/thakurpriyesh</span>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+      </div>
     </div>
+    
+    <div class="contact-form-container fade-up">
+      <form class="custom-form" action="https://formspree.io/f/xojpllkg" method="POST">
+        
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="What's your name?" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="hello@example.com" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="How can I help you?" required></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+
   </div>
-  
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div>Designed & built with care.</div>
-  <span>Portfolio · 2025</span>
+  <span>Priyesh Thakur</span>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
   // Fade-up on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
